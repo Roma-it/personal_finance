@@ -1,7 +1,12 @@
 module.exports = (sequelize, dataTypes) => {
   const alias = "Category";
   const cols = {
-    id: { type: dataTypes.INTEGER(), allownull: false, autoIncrement: true },
+    id: {
+      type: dataTypes.INTEGER(),
+      allownull: false,
+      autoIncrement: true,
+      primaryKey: true,
+    },
     op_type_id: { type: dataTypes.INTEGER(), allownull: false },
     name: { type: dataTypes.STRING(255), allownull: false },
   };
@@ -13,12 +18,12 @@ module.exports = (sequelize, dataTypes) => {
 
   Category.associate = function (model) {
     Category.belongsTo(model.OpType, {
-      as: "op_types",
-      foreignkey: "op_type_id",
+      as: "op_type",
+      foreignKey: "op_type_id",
     });
     Category.hasMany(model.Operation, {
       as: "operation_categories",
-      foreignkey: "categories_id",
+      foreignKey: "category_id",
     });
   };
   return Category;
