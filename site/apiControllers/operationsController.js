@@ -35,5 +35,16 @@ const OpController = {
     });
     res.json(result);
   },
+  totalBalance: async (req, res) => {
+    const ingresos = await db.Operation.sum("amount", {
+      where: { op_type_id: 1 },
+    });
+    const egresos = await db.Operation.sum("amount", {
+      where: { op_type_id: 2 },
+    });
+    const balance = ingresos - egresos;
+    console.log(balance);
+    res.json(balance);
+  },
 };
 module.exports = OpController;
