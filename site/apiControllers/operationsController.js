@@ -4,8 +4,8 @@ const OpController = {
   findAll: async (req, res) => {
     const result = await db.Operation.findAll({
       include: [
-        { association: "category" },
-        { association: "operation_type" },
+        { association: "category", attributes: ["name"] },
+        { association: "operation_type", attributes: ["name"] },
         { association: "user" },
       ],
     });
@@ -14,7 +14,10 @@ const OpController = {
   lastOps: async (req, res) => {
     const result = await db.Operation.findAll({
       limit: 10,
-      include: [{ association: "category" }, { association: "operation_type" }],
+      include: [
+        { association: "category", attributes: ["name"] },
+        { association: "operation_type", attributes: ["name"] },
+      ],
     });
     res.json(result);
   },
