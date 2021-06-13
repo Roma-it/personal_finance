@@ -2,7 +2,7 @@ module.exports = function (sequelize, dataTypes) {
   const alias = "OpType";
   const cols = {
     id: {
-      type: dataTypes.INTEGER(),
+      type: dataTypes.INTEGER(11),
       allownull: false,
       autoIncrement: true,
       primaryKey: true,

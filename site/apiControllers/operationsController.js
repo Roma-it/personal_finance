@@ -18,6 +18,7 @@ const OpController = {
         { association: "category", attributes: ["name"] },
         { association: "operation_type", attributes: ["name"] },
       ],
+      order: [["op_date", "DESC"]],
     });
     res.json(result);
   },
@@ -45,6 +46,17 @@ const OpController = {
     const balance = ingresos - egresos;
     console.log(balance);
     res.json(balance);
+  },
+  create: async (req, res) => {
+    console.log(req.body);
+    const operationToCreate = await db.Operation.create({ ...req.body });
+    res.json(operationToCreate);
+  },
+  categories: async (req, res) => {
+    const totalCategories = await db.Category.findAll({
+      where: { op_type_id: req.params.type_id },
+    });
+    res.json(totalCategories);
   },
 };
 module.exports = OpController;

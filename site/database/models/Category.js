@@ -2,12 +2,12 @@ module.exports = (sequelize, dataTypes) => {
   const alias = "Category";
   const cols = {
     id: {
-      type: dataTypes.INTEGER(),
+      type: dataTypes.INTEGER(11),
       allownull: false,
       autoIncrement: true,
       primaryKey: true,
     },
-    op_type_id: { type: dataTypes.INTEGER(), allownull: false },
+    op_type_id: { type: dataTypes.INTEGER(11), allownull: false },
     name: { type: dataTypes.STRING(255), allownull: false },
   };
   const config = {

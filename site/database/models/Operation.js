@@ -2,7 +2,7 @@ module.exports = (sequelize, dataTypes) => {
   const alias = "Operation";
   const cols = {
     id: {
-      type: dataTypes.INTEGER(),
+      type: dataTypes.INTEGER(11),
       allownull: false,
       autoIncrement: true,
       primaryKey: true,
@@ -10,9 +10,9 @@ module.exports = (sequelize, dataTypes) => {
     concept: { type: dataTypes.STRING(255), allownull: false },
     amount: { type: dataTypes.DECIMAL(11, 2), allownull: false },
     op_date: { type: dataTypes.DATE, allownull: false },
-    category_id: { type: dataTypes.INTEGER, allownull: false },
-    op_type_id: { type: dataTypes.INTEGER, allownull: false },
-    user_id: { type: dataTypes.INTEGER, allownull: false },
+    category_id: { type: dataTypes.INTEGER(11), allownull: false },
+    op_type_id: { type: dataTypes.INTEGER(11), allownull: false },
+    user_id: { type: dataTypes.INTEGER(11), allownull: false },
   };
   const config = {
     timestamps: false,
