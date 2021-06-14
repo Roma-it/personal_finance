@@ -1,0 +1,13 @@
+.record {
+  font-size: 12px;
+  font-weight: 300;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0.2rem 0;
+  width: 100%;
+}
+.btn-editar {
+  color: white;
+  padding: 0.2rem 0.8rem;
+  border: none;
+}

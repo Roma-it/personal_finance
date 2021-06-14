@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid teal;
+  min-height: 4rem;
+  padding: 1rem;
+}
+.display-flex {
+  display: flex;
+}
+.logo {
+  font-weight: normal;
+}
+
+@media (min-width: 1000px) {
+  .header {
+    padding: 1.5rem;
+  }
+}

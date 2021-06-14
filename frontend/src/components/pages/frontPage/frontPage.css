@@ -1,0 +1,43 @@
+.title {
+  font-size: 4rem;
+  font-weight: bold;
+  margin: 1rem auto;
+}
+.sub-title {
+  font-size: 1.5rem;
+  margin: 1rem auto;
+}
+.field {
+  min-width: 170px;
+  max-width: 300px;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid black;
+}
+.display-center {
+  text-align: center;
+}
+.column {
+  display: flex;
+  flex-direction: column;
+}
+.btn {
+  padding: 0.5rem 1rem;
+  background-color: teal;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  letter-spacing: 1.4px;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+  max-width: 300px;
+}
+.small-text {
+  font-size: 0.8rem;
+}
+.link {
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}

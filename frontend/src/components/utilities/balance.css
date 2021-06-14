@@ -1,0 +1,10 @@
+.balance {
+  min-width: 250px;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 1rem;
+  font-size: 1.6rem;
+}

@@ -1,0 +1,59 @@
+.last-op-table {
+  min-width: 250px;
+  max-width: 700px;
+  margin: auto;
+  border-collapse: collapse;
+  box-shadow: 0 0 20px rgba(160, 154, 154, 0.5);
+  padding: 1rem;
+  margin-bottom: 2rem;
+}
+.last-op-table thead tr {
+  text-align: left;
+  background-color: rgba(160, 154, 154, 0.5);
+  font-weight: bold;
+  font-size: 16px;
+}
+.last-op-table th,
+.last-op-table td {
+  padding: 0.5rem 0.8rem;
+}
+.last-op-table tbody td {
+  font-size: 14px;
+}
+.last-op-table tbody tr:nth-of-type(even) {
+  background-color: rgba(160, 154, 154, 0.1);
+}
+.list-title {
+  text-align: center;
+  margin: 0 auto 0.5rem;
+  font-weight: 500;
+}
+
+@media (max-width: 715px) {
+  .last-op-table {
+    box-shadow: none;
+  }
+  .last-op-table tr {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(160, 154, 154, 0.5);
+    padding: 1rem;
+    margin: 1rem auto;
+    box-shadow: 0 0 20px rgba(160, 154, 154, 0.5);
+  }
+  thead {
+    display: none;
+  }
+  .last-op-table td {
+    padding: 0.5rem;
+  }
+  .last-op-table td[data-title] {
+    display: flex;
+    justify-content: space-between;
+  }
+  .last-op-table td[data-title]::before {
+    content: attr(data-title);
+    font-weight: bold;
+    color: rgba(160, 154, 154, 0.7);
+  }
+}

@@ -1,0 +1,52 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  background-color: teal;
+  min-height: 40px;
+  position: relative;
+}
+.nav {
+  display: none;
+}
+.nav-show {
+  display: flex;
+  flex-direction: column;
+}
+.block {
+  margin: 0;
+}
+.center {
+  text-align: center;
+}
+.burger-btn {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 300;
+  cursor: pointer;
+}
+.burger-btn:hover {
+  color: rgba(160, 154, 154, 0.65);
+}
+
+@media (min-width: 625px) {
+  .sidebar {
+    flex-direction: row;
+  }
+  .burger-btn {
+    display: none;
+  }
+  .nav-show {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
