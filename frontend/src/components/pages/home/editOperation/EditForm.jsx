@@ -1,43 +1,59 @@
 import React from 'react'
 import './register-form.css'
-import { Link } from "react-router-dom"
+import { Redirect, useParams } from "react-router-dom"
 import {useRef, useEffect, useState, useContext} from 'react'
 import { balanceContext } from '../../../contexts/balaceContext'
 
 function RegisterForm() {
 
-    const {balance, setBalance} = useContext(balanceContext)
-    const [catArray, setCatArray] = useState([])
+    const {id} = useParams();
+    const { setBalance} = useContext(balanceContext)
+    const [operation, setOperation] = useState({})
     const [result, setResult] = useState("")
-    const type = useRef(null)
-    const amount = useRef(null)
+    const [concept, setConcept] = useState()
+    const [amount, setAmount] = useState()
+    const [date, setDate] = useState()
 
-    const fetchCategories = async ()=>{
-        const result  = await fetch(`http://localhost:4000/operations/categories/${type.current.value}`);
-        const data = await result.json();
-        setCatArray (data);
-    }
+    const type = useRef(null)
+    
+    useEffect(() => {
+       const fetchData = async () =>{
+            const result = await fetch(`http://localhost:4000/operations/op/${id}`);
+            const data = await result.json();
+            setOperation(data)
+        }
+       fetchData(); 
+    }, [id])
+
+    useEffect(() => {
+       setAmount(operation.amount)
+       setConcept(operation.concept)
+       setDate(operation.op_date)
+    }, [operation])
   
     useEffect(() => {
-    const form = document.getElementById("form")
+    const edit = document.getElementById("edit")
+    const del = document.getElementById("delete")
     const concept = document.getElementById("concept")
     const amountField = document.getElementById("amount")
     const op_date = document.getElementById("op_date")
-    const op_type = document.getElementById("op_type")
-    const category = document.getElementById("category")
 
-    form.addEventListener("click", async (e)=>{
+    del.addEventListener("click", async (e)=>{
+        e.preventDefault()
+        const res =  await fetch(`http://localhost:4000/operations/delete/${id}`,{
+            method:"DELETE",
+            headers:{ 'Content-Type': 'application/json'}})
+        setResult(res.status);
+    })
+    edit.addEventListener("click", async (e)=>{
         e.preventDefault()
         const data = {
             concept:concept.value,
             amount:parseInt(amountField.value),
             op_date:op_date.value,
-            op_type_id:parseInt(op_type.value),
-            category_id:parseInt(category.value),
-            user_id:1
     }
-     const res =  await fetch("http://localhost:4000/operations/create",{
-            method:"POST",
+     const res =  await fetch(`http://localhost:4000/operations/edit/${id}`,{
+            method:"PUT",
             headers:{
                'Content-Type': 'application/json'
            },
@@ -54,37 +70,30 @@ function RegisterForm() {
         }
        fetchData();
     }, [result])
-    const changeColor = ()=>{
-        if(type.current.value == 2){
-            amount.current.style.color="red";
-        } else{
-            amount.current.style.color="black";
-        }
+
+      const handleChange = (e)=>{
+          if(e.target.id === "concept"){setConcept (e.target.value)}
+          else if (e.target.id === "amount"){setAmount (e.target.value)
+       }
+          else {setDate (e.target.value)}
     }
+    if(result==200){
+        return <Redirect to="/home"/>
+    } else {
     return (
         <div className="register-form">
             <p className="sub-title">REGISTRO DE OPERACIONES</p>
             <form className="display-center column" action="" method="POST">
-                <select onChange={fetchCategories} id="op_type" className="field" name="op_type" ref={type}>
-                    <option value="">Tipo de operacion</option>
-                    <option value="1">Ingreso</option>
-                    <option value="2">Egreso</option>
-                </select>
-                <select id="category" className="field" name="op_type">
-                    <option value="">Categoria</option>
-                    {
-                        catArray.map((category,i) =>{
-                            return <option key={category.id+i} value={category.id}>{category.name}</option>
-                        })
-                    }
-                </select>
-                <input id="concept" className="field" type="text" name="concept" placeholder="Concepto" autoComplete="off"/>
-                <input id="amount" onChange={changeColor} className="field" ref={amount} type="number" name="amount" placeholder="Monto" autoComplete="off"/>
-                <input id="op_date" className="field" type="date" name="op_date" placeholder="Fecha" autoComplete="off"/>
-                <button className="btn" id="form" >REGISTRAR</button>
+                <input id="op_type" disabled={true} value={operation.operation_type && operation.operation_type.name} className="field" name="op_type" ref={type}/>              
+                <input id="category" disabled={true} value={operation.category && operation.category.name} className="field" name="op_type"/>
+                <input id="concept" onChange={ handleChange} className="field" type="text" name="concept" placeholder="Concepto" autoComplete="off" value={concept}/>
+                <input id="amount" onChange={ handleChange} className="field" type="number" name="amount" placeholder="Monto" autoComplete="off" value={amount}/>
+                <input id="op_date" onChange={ handleChange} className="field" type="date" name="op_date" placeholder="Fecha" autoComplete="off" value={date}/>
+                <button className="btn" id="edit">EDITAR</button>
+                <button className="btn" id="delete">ELIMINAR</button>
             </form>
         </div>
-    )
+    )}
 }
 
 export default RegisterForm

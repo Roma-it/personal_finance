@@ -1,12 +1,11 @@
 import React from 'react'
 import './register-form.css'
-import { Link } from "react-router-dom"
 import {useRef, useEffect, useState, useContext} from 'react'
 import { balanceContext } from '../../contexts/balaceContext'
 
 function RegisterForm() {
 
-    const {balance, setBalance} = useContext(balanceContext)
+    const { setBalance} = useContext(balanceContext)
     const [catArray, setCatArray] = useState([])
     const [result, setResult] = useState("")
     const type = useRef(null)

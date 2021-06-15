@@ -1,7 +1,7 @@
 import React from 'react'
 import Buttons from './Buttons'
 import './sidebar.css'
-import {useEffect, useRef} from 'react'
+import { useRef} from 'react'
 
 function Sidebar() {
 
@@ -20,7 +20,7 @@ function Sidebar() {
             <Buttons path={"/registerOperation"} name="Registrar Operacion"/>
             <Buttons path={"/ingreso"} name= "Operaciones de Ingreso"/>
             <Buttons path={"/egreso"} name= "Operaciones de Egreso"/>
-            <Buttons path={"/registerOperation"} name= "Consulta de Operaciones"/>
+            <Buttons path={"/categorias"} name= "Operaciones por Categoria"/>
             </nav>
        </div>
     )

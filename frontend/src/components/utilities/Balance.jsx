@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import './balance.css'
-import {useState, useEffect, useRef} from "react"
+import { useEffect, useRef} from "react"
 import { balanceContext } from '../contexts/balaceContext'
 
 function Balance(props) {

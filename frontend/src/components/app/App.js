@@ -8,6 +8,7 @@ import RegisterForm from "../pages/registerOperation/RegisterForm";
 import { balanceContext } from "../contexts/balaceContext";
 import EditForm from "../pages/home/editOperation/EditForm";
 import { useState } from "react";
+import Categorias from "../pages/categorias/Categorias";
 
 function App() {
   const [balance, setBalance] = useState(0);
@@ -21,7 +22,7 @@ function App() {
           <Route exact path="/register">
             <Register />
           </Route>
-          <Route path="/home">
+          <Route exact path="/home">
             <Home
               children={
                 <Card
@@ -31,7 +32,7 @@ function App() {
               }
             />
           </Route>
-          <Route path="/ingreso">
+          <Route exact path="/ingreso">
             <Home
               children={
                 <Card
@@ -41,7 +42,7 @@ function App() {
               }
             />
           </Route>
-          <Route path="/egreso">
+          <Route exact path="/egreso">
             <Home
               children={
                 <Card
@@ -51,11 +52,14 @@ function App() {
               }
             />
           </Route>
-          <Route path="/registerOperation">
+          <Route exact path="/registerOperation">
             <Home children={<RegisterForm />} />
           </Route>
-          <Route path="/editar">
+          <Route exact path="/editar/:id">
             <Home children={<EditForm />} />
+          </Route>
+          <Route exact path="/categorias">
+            <Home children={<Categorias />} />
           </Route>
         </Switch>
       </Router>

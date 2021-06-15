@@ -6,7 +6,7 @@ import Record from "./Record"
 function Card(props) {
 
     const [operations, setOperations] = useState([{category:{name:""}, operation_type:{name:""}}]);
-    
+
     useEffect(() => {
         const fetchData = async () =>{
             const result = await fetch(props.url);
@@ -33,10 +33,10 @@ function Card(props) {
             <tbody>
                 {
                 operations.map((record,i) => {
-                   return <Record key={record.id+i} amount={record.amount} 
+                   return <Record key={record.id+i+record.amount} amount={record.amount} 
                     type={record.operation_type.name}
                     concept={record.concept} category={record.category.name} 
-                    date={record.op_date} url={props.url}/>
+                    date={record.op_date} url={props.url} id={record.id}/>
                 })
             }
             </tbody>
