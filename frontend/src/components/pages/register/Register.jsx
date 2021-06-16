@@ -1,9 +1,9 @@
 import React from 'react'
 import Container from "../../container/Container"
-import '../frontPage/frontPage.css'
+import '../login/login.css'
 import { Link } from "react-router-dom"
-import { Redirect, useParams } from "react-router-dom"
-import {useRef, useEffect, useState, useContext} from 'react'
+import { Redirect } from "react-router-dom"
+import {useEffect, useState} from 'react'
 
 function Register() {
 

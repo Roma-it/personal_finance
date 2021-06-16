@@ -25,6 +25,7 @@ const OpController = {
   lastOps: async (req, res) => {
     const result = await db.Operation.findAll({
       limit: 10,
+      where: { user_id: req.params.id },
       include: [
         { association: "category", attributes: ["name"] },
         { association: "operation_type", attributes: ["name"] },
@@ -35,24 +36,24 @@ const OpController = {
   },
   findAllByType: async (req, res) => {
     const result = await db.Operation.findAll({
-      where: { op_type_id: req.params.id },
+      where: { op_type_id: req.params.id, user_id: req.params.userid },
       include: [{ association: "category" }, { association: "operation_type" }],
     });
     res.json(result);
   },
   findAllByCategory: async (req, res) => {
     const result = await db.Operation.findAll({
-      where: { category_id: req.params.id },
+      where: { user_id: req.params.userid, category_id: req.params.id },
       include: [{ association: "category" }, { association: "operation_type" }],
     });
     res.json(result);
   },
   totalBalance: async (req, res) => {
     const ingresos = await db.Operation.sum("amount", {
-      where: { op_type_id: 1 },
+      where: { op_type_id: 1, user_id: req.params.userid },
     });
     const egresos = await db.Operation.sum("amount", {
-      where: { op_type_id: 2 },
+      where: { op_type_id: 2, user_id: req.params.userid },
     });
     const balance = ingresos - egresos;
     res.json(balance);

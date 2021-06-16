@@ -1,9 +1,11 @@
 import React from 'react'
 import {useRef, useEffect, useState, useContext} from 'react'
+import { userContext } from '../../contexts/userContext';
 import Record from '../../utilities/Record';
 import './categories.css'
 
 function Categorias() {
+    const {userLogged} = useContext(userContext)
     const [catArray, setCatArray] = useState([])
     const [operations, setOperations] = useState([]);
     const [valueCategory, setValueCategory] = useState ("")
@@ -18,7 +20,7 @@ function Categorias() {
        const fetchData = async () =>{
            console.log(valueCategory)
            if(valueCategory){
-            const result = await fetch(`http://localhost:4000/operations/byCategory/${valueCategory}`);
+            const result = await fetch(`http://localhost:4000/operations/byCategory/${valueCategory}/${userLogged.id}`);
             const data = await result.json();
             setOperations(data)}
         }       

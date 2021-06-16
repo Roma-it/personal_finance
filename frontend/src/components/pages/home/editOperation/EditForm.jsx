@@ -3,10 +3,12 @@ import './register-form.css'
 import { Redirect, useParams } from "react-router-dom"
 import {useRef, useEffect, useState, useContext} from 'react'
 import { balanceContext } from '../../../contexts/balaceContext'
+import { userContext } from '../../../contexts/userContext'
 
 function RegisterForm() {
 
     const {id} = useParams();
+    const {userLogged} = useContext(userContext)
     const { setBalance} = useContext(balanceContext)
     const [operation, setOperation] = useState({})
     const [result, setResult] = useState("")
@@ -64,7 +66,7 @@ function RegisterForm() {
     }, [])
     useEffect(() => {
        const fetchData = async () =>{
-            const result = await fetch("http://localhost:4000/operations/total");
+            const result = await fetch(`http://localhost:4000/operations/total/${userLogged.id}`);
             const data = await result.json();
             setBalance(data)
         }

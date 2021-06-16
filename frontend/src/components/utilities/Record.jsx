@@ -3,7 +3,7 @@ import './record.css'
 import {useEffect, useRef} from 'react'
 import {Link} from 'react-router-dom'
 
-function Record({amount, category, concept, date, type, url, id}) {
+function Record({amount, category, concept, date, type, id}) {
     
    const amountField = useRef(null)
  

@@ -4,10 +4,10 @@ const opController = require("../apiControllers/operationsController");
 
 router.get("/all", opController.findAll);
 router.get("/op/:id", opController.findById);
-router.get("/lastOps", opController.lastOps);
-router.get("/byType/:id", opController.findAllByType);
-router.get("/byCategory/:id", opController.findAllByCategory);
-router.get("/total", opController.totalBalance);
+router.get("/lastOps/:id", opController.lastOps);
+router.get("/byType/:id/:userid", opController.findAllByType);
+router.get("/byCategory/:id/:userid", opController.findAllByCategory);
+router.get("/total/:userid", opController.totalBalance);
 router.post("/create", opController.create);
 router.put("/edit/:id", opController.edit);
 router.delete("/delete/:id", opController.delete);

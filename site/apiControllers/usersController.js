@@ -23,7 +23,7 @@ const userController = {
     if (userToLogin && userToLogin.pass == req.body.pass) {
       return res.json(userToLogin);
     } else {
-      res.json("Credenciales incorrectas");
+      res.json("Credenciales Incorrectas");
     }
   },
 };
