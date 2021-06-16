@@ -15,9 +15,11 @@ const userController = {
     res.json(userToCreate);
   },
   login: async (req, res) => {
+    console.log(req.body);
     const userToLogin = await db.User.findOne({
       where: { email: req.body.mail },
     });
+    console.log(userToLogin);
     if (userToLogin && userToLogin.pass == req.body.pass) {
       return res.json(userToLogin);
     } else {

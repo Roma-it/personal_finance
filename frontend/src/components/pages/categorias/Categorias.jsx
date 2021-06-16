@@ -1,6 +1,7 @@
 import React from 'react'
 import {useRef, useEffect, useState, useContext} from 'react'
 import Record from '../../utilities/Record';
+import './categories.css'
 
 function Categorias() {
     const [catArray, setCatArray] = useState([])
@@ -24,13 +25,13 @@ function Categorias() {
         fetchData()
     }, [valueCategory])
     return (
-        <div>
-            <select onChange={fetchCategories} id="op_type" className="field" name="op_type" ref={type}>
+        <div className="categories">
+            <select onChange={fetchCategories} id="op_type" className="field min-width" name="op_type" ref={type}>
                     <option value="">Tipo de operacion</option>
                     <option value="1">Ingreso</option>
                     <option value="2">Egreso</option>
                 </select>
-            <select  onChange={(e)=>setValueCategory(e.target.value)} id="category" className="field" name="op_type" value={valueCategory}>
+            <select  onChange={(e)=>setValueCategory(e.target.value)} id="category" className="field min-width" name="op_type" value={valueCategory}>
                     <option value="">Categoria</option>
                     {
                         catArray.map((category,i) =>{
@@ -38,12 +39,10 @@ function Categorias() {
                         })
                     }
                 </select>
-
-        
         {
             operations.length > 0 ?
         <>  
-        <h2 className="list-title">Operaciones de categoria </h2>
+        <h2 className="list-title">Listado de Operaciones</h2>
 
         <table className="last-op-table">
             <thead>

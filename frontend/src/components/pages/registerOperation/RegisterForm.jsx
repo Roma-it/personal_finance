@@ -2,6 +2,7 @@ import React from 'react'
 import './register-form.css'
 import {useRef, useEffect, useState, useContext} from 'react'
 import { balanceContext } from '../../contexts/balaceContext'
+import { Redirect } from "react-router-dom"
 
 function RegisterForm() {
 
@@ -42,7 +43,7 @@ function RegisterForm() {
            },
            body: JSON.stringify(data)
        })
-       setResult(res) 
+       setResult(res.status) 
     })
     }, [])
     useEffect(() => {
@@ -60,6 +61,9 @@ function RegisterForm() {
             amount.current.style.color="black";
         }
     }
+      if(result===200){
+        return <Redirect to="/home"/>
+    } else {
     return (
         <div className="register-form">
             <p className="sub-title">REGISTRO DE OPERACIONES</p>
@@ -84,6 +88,7 @@ function RegisterForm() {
             </form>
         </div>
     )
+    }
 }
 
 export default RegisterForm

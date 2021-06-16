@@ -59,7 +59,7 @@ function RegisterForm() {
            },
            body: JSON.stringify(data)
        })
-       setResult(res) 
+       setResult(res.status) 
     })
     }, [])
     useEffect(() => {
@@ -77,7 +77,7 @@ function RegisterForm() {
        }
           else {setDate (e.target.value)}
     }
-    if(result==200){
+    if(result===200){
         return <Redirect to="/home"/>
     } else {
     return (
